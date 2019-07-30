@@ -12,6 +12,17 @@
 		CE361CE222D8DA230056B268 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE361CE022D8DA230056B268 /* Main.storyboard */; };
 		CE361CE422D8DA250056B268 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE361CE322D8DA250056B268 /* Assets.xcassets */; };
 		CE361CE722D8DA250056B268 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE361CE522D8DA250056B268 /* LaunchScreen.storyboard */; };
+		CE7DAAA322DB63A50076075A /* ColorSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7DAAA222DB63A50076075A /* ColorSelect.swift */; };
+		CE7DAAA622DB85860076075A /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7DAAA422DB85860076075A /* CustomColor.swift */; };
+		CE7DAAA722DB85860076075A /* CustomColor.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE7DAAA522DB85860076075A /* CustomColor.xib */; };
+		CEC620E722DA3E83007E393E /* HSBColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC620E622DA3E83007E393E /* HSBColorPicker.swift */; };
+		CEE97AE622E38917006E8DD7 /* NoteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE97AE522E38917006E8DD7 /* NoteListViewController.swift */; };
+		CEFD2FED22E4B76B002515EC /* FileNotebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFD2FEA22E4B76B002515EC /* FileNotebook.swift */; };
+		CEFD2FEE22E4B76B002515EC /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFD2FEB22E4B76B002515EC /* Note.swift */; };
+		CEFD2FEF22E4B76B002515EC /* NoteExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFD2FEC22E4B76B002515EC /* NoteExtension.swift */; };
+		CEFD2FF222E4E467002515EC /* NoteViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFD2FF022E4E467002515EC /* NoteViewCell.swift */; };
+		CEFD2FF322E4E467002515EC /* NoteViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEFD2FF122E4E467002515EC /* NoteViewCell.xib */; };
+		CEFD2FF522E4F285002515EC /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFD2FF422E4F285002515EC /* ImageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +33,17 @@
 		CE361CE322D8DA250056B268 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE361CE622D8DA250056B268 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE361CE822D8DA250056B268 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE7DAAA222DB63A50076075A /* ColorSelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelect.swift; sourceTree = "<group>"; };
+		CE7DAAA422DB85860076075A /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
+		CE7DAAA522DB85860076075A /* CustomColor.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomColor.xib; sourceTree = "<group>"; };
+		CEC620E622DA3E83007E393E /* HSBColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSBColorPicker.swift; sourceTree = "<group>"; };
+		CEE97AE522E38917006E8DD7 /* NoteListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListViewController.swift; sourceTree = "<group>"; };
+		CEFD2FEA22E4B76B002515EC /* FileNotebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileNotebook.swift; sourceTree = "<group>"; };
+		CEFD2FEB22E4B76B002515EC /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		CEFD2FEC22E4B76B002515EC /* NoteExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteExtension.swift; sourceTree = "<group>"; };
+		CEFD2FF022E4E467002515EC /* NoteViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewCell.swift; sourceTree = "<group>"; };
+		CEFD2FF122E4E467002515EC /* NoteViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoteViewCell.xib; sourceTree = "<group>"; };
+		CEFD2FF422E4F285002515EC /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +60,7 @@
 		CE361CD022D8DA230056B268 = {
 			isa = PBXGroup;
 			children = (
+				CEFD2FE922E4B752002515EC /* Model */,
 				CE361CDB22D8DA230056B268 /* Notes */,
 				CE361CDA22D8DA230056B268 /* Products */,
 			);
@@ -60,8 +83,26 @@
 				CE361CE322D8DA250056B268 /* Assets.xcassets */,
 				CE361CE522D8DA250056B268 /* LaunchScreen.storyboard */,
 				CE361CE822D8DA250056B268 /* Info.plist */,
+				CEC620E622DA3E83007E393E /* HSBColorPicker.swift */,
+				CE7DAAA222DB63A50076075A /* ColorSelect.swift */,
+				CE7DAAA422DB85860076075A /* CustomColor.swift */,
+				CE7DAAA522DB85860076075A /* CustomColor.xib */,
+				CEE97AE522E38917006E8DD7 /* NoteListViewController.swift */,
+				CEFD2FF022E4E467002515EC /* NoteViewCell.swift */,
+				CEFD2FF122E4E467002515EC /* NoteViewCell.xib */,
+				CEFD2FF422E4F285002515EC /* ImageViewController.swift */,
 			);
 			path = Notes;
+			sourceTree = "<group>";
+		};
+		CEFD2FE922E4B752002515EC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CEFD2FEA22E4B76B002515EC /* FileNotebook.swift */,
+				CEFD2FEB22E4B76B002515EC /* Note.swift */,
+				CEFD2FEC22E4B76B002515EC /* NoteExtension.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,7 +165,9 @@
 			files = (
 				CE361CE722D8DA250056B268 /* LaunchScreen.storyboard in Resources */,
 				CE361CE422D8DA250056B268 /* Assets.xcassets in Resources */,
+				CE7DAAA722DB85860076075A /* CustomColor.xib in Resources */,
 				CE361CE222D8DA230056B268 /* Main.storyboard in Resources */,
+				CEFD2FF322E4E467002515EC /* NoteViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,7 +179,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE361CDF22D8DA230056B268 /* ViewController.swift in Sources */,
+				CEC620E722DA3E83007E393E /* HSBColorPicker.swift in Sources */,
+				CEFD2FF222E4E467002515EC /* NoteViewCell.swift in Sources */,
+				CEE97AE622E38917006E8DD7 /* NoteListViewController.swift in Sources */,
+				CEFD2FEE22E4B76B002515EC /* Note.swift in Sources */,
 				CE361CDD22D8DA230056B268 /* AppDelegate.swift in Sources */,
+				CE7DAAA622DB85860076075A /* CustomColor.swift in Sources */,
+				CE7DAAA322DB63A50076075A /* ColorSelect.swift in Sources */,
+				CEFD2FEF22E4B76B002515EC /* NoteExtension.swift in Sources */,
+				CEFD2FF522E4F285002515EC /* ImageViewController.swift in Sources */,
+				CEFD2FED22E4B76B002515EC /* FileNotebook.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
