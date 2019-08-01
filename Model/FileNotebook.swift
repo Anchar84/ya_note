@@ -2,14 +2,18 @@ import Foundation
 import UIKit
 
 class FileNotebook {
-    private var notes: [Note] = []
+    private(set) var notes: [Note] = []
     
     var getNotes: [Note] {
         return notes
     }
     
     public func add(_ note: Note) {
-        notes.append(note)
+        if let index = notes.firstIndex(where: { $0.uid == note.uid }) {
+            notes[index] = note
+        } else {
+            notes.append(note)
+        }
     }
     
     public func remove(with uid: String) {
