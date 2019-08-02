@@ -73,11 +73,11 @@
             </objects>
             <point key="canvasLocation" x="-673" y="-8"/>
         </scene>
-        <!--Item-->
+        <!--notes-->
         <scene sceneID="oDa-xP-81l">
             <objects>
                 <navigationController id="NZU-O9-HhJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="Star" id="ca2-Uv-dZe"/>
+                    <tabBarItem key="tabBarItem" title="notes" image="Star" id="ca2-Uv-dZe"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="i1s-Yg-BiL">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -111,7 +111,7 @@
         <!--note-->
         <scene sceneID="ywI-kC-gkb">
             <objects>
-                <viewController id="YSW-I4-kP3" customClass="ViewController" customModule="Notes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="YSW-I4-kP3" customClass="NoteViewController" customModule="Notes" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yoa-aA-vLh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -277,7 +277,7 @@
                     <connections>
                         <outlet property="customColor" destination="E5n-c5-jzR" id="HgU-Zr-eNC"/>
                         <outlet property="destroyDate" destination="xi6-st-hWQ" id="NeM-9j-AtR"/>
-                        <outlet property="destroyDateHeight" destination="foq-t2-Brt" id="78s-Xz-xOh"/>
+                        <outlet property="destroyDateHeight" destination="j37-UM-ymH" id="z6n-0F-uuh"/>
                         <outlet property="greenColor" destination="dYb-Sd-gD7" id="qVG-k7-D3j"/>
                         <outlet property="noteText" destination="mPQ-MS-5vH" id="7i2-X8-dX6"/>
                         <outlet property="noteTitle" destination="jia-uv-MtH" id="yqr-M4-cAm"/>
@@ -342,11 +342,11 @@
             </objects>
             <point key="canvasLocation" x="-674" y="834"/>
         </scene>
-        <!--Item-->
+        <!--images-->
         <scene sceneID="M0V-ng-pDW">
             <objects>
                 <navigationController id="Eg7-Hq-8Yc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="Peace" id="pmK-nO-h6e"/>
+                    <tabBarItem key="tabBarItem" title="images" image="Peace" id="pmK-nO-h6e"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8H1-fa-Qq9">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

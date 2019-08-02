@@ -49,13 +49,3 @@ class FileNotebook {
         }
     }
 }
-
-let myNotebook = FileNotebook()
-var selectedNode: Int = -1
-
-func fillDumyNotes() {
-    myNotebook.add(Note(title: "note1", content: "note1", importance: .important))
-    myNotebook.add(Note(title: "note2", content: "note2", importance: .important))
-    myNotebook.add(Note(title: "note3", content: "note3", importance: .important))
-    myNotebook.add(Note(title: "note4", content: "note4", importance: .important))
-}

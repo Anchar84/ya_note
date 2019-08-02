@@ -12,6 +12,7 @@ import UIKit
 class NoteListViewController: UIViewController {
 
     @IBOutlet weak var notesTable: UITableView!
+    var selectedNote: Note?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +24,7 @@ class NoteListViewController: UIViewController {
     @IBAction func unwindToMain(segue: UIStoryboardSegue) {}
     
     @IBAction func addNote(_ sender: UIButton) {
-        selectedNode = -1
+        selectedNote = nil
         performSegue(withIdentifier: "GoToNote", sender: self)
     }
     
@@ -36,12 +37,18 @@ class NoteListViewController: UIViewController {
         notesTable.reloadData()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let controller = segue.destination as? NoteViewController {
+            controller.editingNote = selectedNote
+        }
+    }
+    
 }
 
 extension NoteListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return myNotebook.getNotes.count
+        return notebook.getNotes.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -50,7 +57,7 @@ extension NoteListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "note", for: indexPath) as! NoteViewCell
-        let note = myNotebook.getNotes[indexPath.section]
+        let note = notebook.getNotes[indexPath.section]
         cell.noteTitleLabel?.text = note.title
         cell.noteTextLabel?.text = note.content
         cell.noteColor.backgroundColor = note.color
@@ -59,14 +66,14 @@ extension NoteListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCell.EditingStyle.delete) {
-            let note = myNotebook.getNotes[indexPath.section]
-            myNotebook.remove(with: note.uid)
+            let note = notebook.getNotes[indexPath.section]
+            notebook.remove(with: note.uid)
             notesTable.reloadData()
         }
     }
     
     func tableView(_ table: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedNode = indexPath.section
+        selectedNote = notebook.notes[indexPath.section]
         performSegue(withIdentifier: "GoToNote", sender: self)
     }
 }

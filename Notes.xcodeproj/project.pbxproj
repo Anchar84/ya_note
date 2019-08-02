@@ -8,13 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		CE361CDD22D8DA230056B268 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE361CDC22D8DA230056B268 /* AppDelegate.swift */; };
-		CE361CDF22D8DA230056B268 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE361CDE22D8DA230056B268 /* ViewController.swift */; };
+		CE361CDF22D8DA230056B268 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE361CDE22D8DA230056B268 /* NoteViewController.swift */; };
 		CE361CE222D8DA230056B268 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE361CE022D8DA230056B268 /* Main.storyboard */; };
 		CE361CE422D8DA250056B268 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE361CE322D8DA250056B268 /* Assets.xcassets */; };
 		CE361CE722D8DA250056B268 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE361CE522D8DA250056B268 /* LaunchScreen.storyboard */; };
+		CE7B2E8F22F33DFF002C9C61 /* LoadNotesDBOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B2E8E22F33DFF002C9C61 /* LoadNotesDBOperation.swift */; };
+		CE7B2E9122F33E60002C9C61 /* RemoveNoteDBOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B2E9022F33E60002C9C61 /* RemoveNoteDBOperation.swift */; };
+		CE7B2E9322F33F15002C9C61 /* LoadNotesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B2E9222F33F15002C9C61 /* LoadNotesOperation.swift */; };
+		CE7B2E9522F34053002C9C61 /* RemoveNoteOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B2E9422F34053002C9C61 /* RemoveNoteOperation.swift */; };
 		CE7DAAA322DB63A50076075A /* ColorSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7DAAA222DB63A50076075A /* ColorSelect.swift */; };
 		CE7DAAA622DB85860076075A /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7DAAA422DB85860076075A /* CustomColor.swift */; };
 		CE7DAAA722DB85860076075A /* CustomColor.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE7DAAA522DB85860076075A /* CustomColor.xib */; };
+		CEAAAA4D22F4A5C400A780FB /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAAAA4C22F4A5C400A780FB /* Main.swift */; };
 		CEC620E722DA3E83007E393E /* HSBColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC620E622DA3E83007E393E /* HSBColorPicker.swift */; };
 		CECF85C122F2B7EA0004DFAF /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECF85C022F2B7EA0004DFAF /* AsyncOperation.swift */; };
 		CECF85C322F2B80E0004DFAF /* SaveNoteOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECF85C222F2B80E0004DFAF /* SaveNoteOperation.swift */; };
@@ -35,14 +40,19 @@
 /* Begin PBXFileReference section */
 		CE361CD922D8DA230056B268 /* Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE361CDC22D8DA230056B268 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CE361CDE22D8DA230056B268 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CE361CDE22D8DA230056B268 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 		CE361CE122D8DA230056B268 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CE361CE322D8DA250056B268 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE361CE622D8DA250056B268 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE361CE822D8DA250056B268 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE7B2E8E22F33DFF002C9C61 /* LoadNotesDBOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadNotesDBOperation.swift; sourceTree = "<group>"; };
+		CE7B2E9022F33E60002C9C61 /* RemoveNoteDBOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveNoteDBOperation.swift; sourceTree = "<group>"; };
+		CE7B2E9222F33F15002C9C61 /* LoadNotesOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadNotesOperation.swift; sourceTree = "<group>"; };
+		CE7B2E9422F34053002C9C61 /* RemoveNoteOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveNoteOperation.swift; sourceTree = "<group>"; };
 		CE7DAAA222DB63A50076075A /* ColorSelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelect.swift; sourceTree = "<group>"; };
 		CE7DAAA422DB85860076075A /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
 		CE7DAAA522DB85860076075A /* CustomColor.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomColor.xib; sourceTree = "<group>"; };
+		CEAAAA4C22F4A5C400A780FB /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		CEC620E622DA3E83007E393E /* HSBColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSBColorPicker.swift; sourceTree = "<group>"; };
 		CECF85C022F2B7EA0004DFAF /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
 		CECF85C222F2B80E0004DFAF /* SaveNoteOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveNoteOperation.swift; sourceTree = "<group>"; };
@@ -93,7 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				CE361CDC22D8DA230056B268 /* AppDelegate.swift */,
-				CE361CDE22D8DA230056B268 /* ViewController.swift */,
+				CE361CDE22D8DA230056B268 /* NoteViewController.swift */,
 				CE361CE022D8DA230056B268 /* Main.storyboard */,
 				CE361CE322D8DA250056B268 /* Assets.xcassets */,
 				CE361CE522D8DA250056B268 /* LaunchScreen.storyboard */,
@@ -106,6 +116,7 @@
 				CEFD2FF022E4E467002515EC /* NoteViewCell.swift */,
 				CEFD2FF122E4E467002515EC /* NoteViewCell.xib */,
 				CEFD2FF422E4F285002515EC /* ImageViewController.swift */,
+				CEAAAA4C22F4A5C400A780FB /* Main.swift */,
 			);
 			path = Notes;
 			sourceTree = "<group>";
@@ -117,6 +128,8 @@
 				CECF85C422F2B8770004DFAF /* BackendOpertations */,
 				CECF85C022F2B7EA0004DFAF /* AsyncOperation.swift */,
 				CECF85C222F2B80E0004DFAF /* SaveNoteOperation.swift */,
+				CE7B2E9222F33F15002C9C61 /* LoadNotesOperation.swift */,
+				CE7B2E9422F34053002C9C61 /* RemoveNoteOperation.swift */,
 			);
 			path = Operations;
 			sourceTree = "<group>";
@@ -136,6 +149,8 @@
 			children = (
 				CECF85CA22F2B8EA0004DFAF /* SaveNoteDBOperation.swift */,
 				CECF85CC22F2B9100004DFAF /* BaseDBOperation.swift */,
+				CE7B2E8E22F33DFF002C9C61 /* LoadNotesDBOperation.swift */,
+				CE7B2E9022F33E60002C9C61 /* RemoveNoteDBOperation.swift */,
 			);
 			path = DBOperations;
 			sourceTree = "<group>";
@@ -224,13 +239,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				CECF85CB22F2B8EA0004DFAF /* SaveNoteDBOperation.swift in Sources */,
-				CE361CDF22D8DA230056B268 /* ViewController.swift in Sources */,
+				CE361CDF22D8DA230056B268 /* NoteViewController.swift in Sources */,
+				CE7B2E8F22F33DFF002C9C61 /* LoadNotesDBOperation.swift in Sources */,
 				CECF85C822F2B8BC0004DFAF /* BaseBackendOperation.swift in Sources */,
 				CEC620E722DA3E83007E393E /* HSBColorPicker.swift in Sources */,
 				CEFD2FF222E4E467002515EC /* NoteViewCell.swift in Sources */,
 				CEE97AE622E38917006E8DD7 /* NoteListViewController.swift in Sources */,
+				CE7B2E9522F34053002C9C61 /* RemoveNoteOperation.swift in Sources */,
 				CEFD2FEE22E4B76B002515EC /* Note.swift in Sources */,
 				CE361CDD22D8DA230056B268 /* AppDelegate.swift in Sources */,
+				CEAAAA4D22F4A5C400A780FB /* Main.swift in Sources */,
+				CE7B2E9122F33E60002C9C61 /* RemoveNoteDBOperation.swift in Sources */,
+				CE7B2E9322F33F15002C9C61 /* LoadNotesOperation.swift in Sources */,
 				CE7DAAA622DB85860076075A /* CustomColor.swift in Sources */,
 				CECF85C622F2B8940004DFAF /* SaveNotesBackendOperation.swift in Sources */,
 				CE7DAAA322DB63A50076075A /* ColorSelect.swift in Sources */,

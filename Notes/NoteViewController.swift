@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class NoteViewController: UIViewController {
 
     
     @IBOutlet weak var noteTitle: UITextField!
@@ -22,11 +22,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var customColor: ColorSelect!
     
     private var gradientLayer: CAGradientLayer?
-    var noteIndex: Int = -1
+    var editingNote: Note?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         noteText.layer.borderWidth = 1
         noteText.layer.borderColor = UIColor.gray.cgColor
         
@@ -47,28 +46,26 @@ class ViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        noteIndex = selectedNode
-        if noteIndex < 0 {return}
-        let note = myNotebook.getNotes[noteIndex]
-        noteTitle?.text = note.title
-        noteText?.text = note.content
+        guard let editingNote = editingNote else {return}
+        noteTitle?.text = editingNote.title
+        noteText?.text = editingNote.content
         whiteColor.isSelected = false
         redColor.isSelected = false
         greenColor.isSelected = false
         customColor.isSelected = false
-        if (note.color == whiteColor.backgroundColor) {
+        if (editingNote.color == whiteColor.backgroundColor) {
             whiteColor.isSelected = true
-        } else if (note.color == redColor.backgroundColor) {
+        } else if (editingNote.color == redColor.backgroundColor) {
             redColor.isSelected = true
-        } else if (note.color == greenColor.backgroundColor) {
+        } else if (editingNote.color == greenColor.backgroundColor) {
             greenColor.isSelected = true
         } else {
             customColor.isSelected = true
-            customColor.backgroundColor = note.color
+            customColor.backgroundColor = editingNote.color
         }
-        if note.selfDestructionDate != nil {
+        if editingNote.selfDestructionDate != nil {
             destroyDateHeight.constant = 150
-            destroyDate.date = note.selfDestructionDate ?? Date()
+            destroyDate.date = editingNote.selfDestructionDate ?? Date()
         }
     }
 
@@ -133,12 +130,10 @@ class ViewController: UIViewController {
             date = nil
         }
         var uid = UUID().uuidString
-        if noteIndex >= 0 {
-            let note = myNotebook.getNotes[noteIndex]
-            uid = note.uid
-            myNotebook.remove(with: uid)
+        if editingNote != nil {
+            uid = editingNote!.uid
         }
-        myNotebook.add(Note(uid: uid, title: title, content: text, color: color, selfDestructionDate: date, importance: .important))
+        notebook.add(Note(uid: uid, title: title, content: text, color: color, selfDestructionDate: date, importance: .important))
         performSegue(withIdentifier: "unwindToMainWithSegue", sender: nil)
     }
 }
