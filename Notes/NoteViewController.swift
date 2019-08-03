@@ -133,8 +133,23 @@ class NoteViewController: UIViewController {
         if editingNote != nil {
             uid = editingNote!.uid
         }
-        notebook.add(Note(uid: uid, title: title, content: text, color: color, selfDestructionDate: date, importance: .important))
-        performSegue(withIdentifier: "unwindToMainWithSegue", sender: nil)
+        
+        let saveNoteOperation = SaveNoteOperation(
+            note: Note(uid: uid, title: title, content: text, color: color, importance: .IMPORTANT, selfDestructionDate: date),
+            notebook: notebook,
+            backendQueue: backendQueue,
+            dbQueue: dbQueue
+        )
+        commonQueue.addOperation(saveNoteOperation)
+        
+        // Не совсем понял по заданию как нужно обновить UI, по хорошему нужно какой-то индикатор сохранения реализовать
+        // но так как это учебная задача сделал так
+        let updateUI = BlockOperation {
+            self.performSegue(withIdentifier: "unwindToMainWithSegue", sender: nil)
+        }
+        OperationQueue.main.addOperation(updateUI)
+//        notebook.add(Note(uid: uid, title: title, content: text, color: color, selfDestructionDate: date, importance: .important))
+//        performSegue(withIdentifier: "unwindToMainWithSegue", sender: nil)
     }
 }
 

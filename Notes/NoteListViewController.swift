@@ -34,7 +34,17 @@ class NoteListViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        notesTable.reloadData()
+        let loadNotesOperation = LoadNotesOperation(
+            notebook: notebook,
+            backendQueue: backendQueue,
+            dbQueue: dbQueue
+        )
+        commonQueue.addOperation(loadNotesOperation)
+        // необходимо реализовать индикатор загрузки
+        let updateUI = BlockOperation {
+            self.notesTable.reloadData()
+        }
+        OperationQueue.main.addOperation(updateUI)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -66,9 +76,20 @@ extension NoteListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCell.EditingStyle.delete) {
-            let note = notebook.getNotes[indexPath.section]
-            notebook.remove(with: note.uid)
-            notesTable.reloadData()
+            
+            let removeOperation = RemoveNoteOperation(note: notebook.getNotes[indexPath.section],
+                                                      notebook: notebook,
+                                                      backendQueue: backendQueue,
+                                                      dbQueue: dbQueue)
+            commonQueue.addOperation(removeOperation)
+            // необходимо реализовать индикатор загрузки
+            let updateUI = BlockOperation {
+                self.notesTable.reloadData()
+            }
+            OperationQueue.main.addOperation(updateUI)
+            
+//            notebook.remove(with: note.uid)
+//            notesTable.reloadData()
         }
     }
     

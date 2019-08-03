@@ -44,8 +44,7 @@ class CustomColor: UIViewController {
         colorPreview.setNeedsDisplay()
     }
     
-    
-    @IBAction func colorSelect(_ sender: UILongPressGestureRecognizer) {
+    @IBAction func colorSelect(_ sender: UITapGestureRecognizer) {
         let point = sender.location(in: colorPiker)
         color = colorPiker.getColorAtPoint(point: point)
         
@@ -54,5 +53,6 @@ class CustomColor: UIViewController {
         colorPreview.backgroundColor = color
         colorPreview.setNeedsDisplay()
     }
+    
 
 }

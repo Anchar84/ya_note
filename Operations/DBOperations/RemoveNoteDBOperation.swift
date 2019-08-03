@@ -12,6 +12,7 @@ class RemoveNoteDBOperation: BaseDBOperation {
     
     override func main() {
         notebook.remove(with: uid)
+        notebook.save()
         finish()
     }
 }

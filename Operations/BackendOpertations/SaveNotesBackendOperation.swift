@@ -1,6 +1,5 @@
 import Foundation
 
-
 enum SaveNotesBackendResult {
     case success
     case failure(NetworkError)

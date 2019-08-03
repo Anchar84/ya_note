@@ -1,39 +1,42 @@
 import Foundation
 
 class LoadNotesOperation: AsyncOperation {
-    private let notebook: FileNotebook
     private let loadFromDb: LoadNotesDBOperation
     private var loadFromBackend: LoadNotesBackendOperation?
     
     private(set) var result: Bool? = false
+    private let dbQueue: OperationQueue;
     
     init(notebook: FileNotebook,
          backendQueue: OperationQueue,
          dbQueue: OperationQueue) {
-        self.notebook = notebook
         
         loadFromDb = LoadNotesDBOperation(notebook: notebook)
+        self.dbQueue = dbQueue
         
         super.init()
         
         loadFromDb.completionBlock = {
             let loadFromBackend = LoadNotesBackendOperation()
-            self.loadFromBackend = loadFromBackend
-            self.addDependency(loadFromBackend)
+            
+            loadFromBackend.completionBlock = {
+                guard let notes = loadFromBackend.notes else {return}
+                for note in notes {
+                    notebook.add(note) // добавление данных в коллекцию, если заметка с таким uid уже есть она обновиться
+                }
+                switch loadFromBackend.result! {
+                case .success:
+                    self.result = true
+                case .failure:
+                    self.result = false
+                }
+                self.finish()
+            }
             backendQueue.addOperation(loadFromBackend)
         }
-        
-        addDependency(loadFromDb)
-        dbQueue.addOperation(loadFromDb)
     }
     
     override func main() {
-        switch loadFromBackend!.result! {
-        case .success:
-            result = true
-        case .failure:
-            result = false
-        }
-        finish()
+        dbQueue.addOperation(loadFromDb)
     }
 }

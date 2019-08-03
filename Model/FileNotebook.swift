@@ -23,29 +23,33 @@ class FileNotebook {
     }
     
     public func save() {
-        if let cachePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            let json = self.notes.map { $0.json }
-            do {
-                let data = try JSONSerialization.data(withJSONObject: json, options: [])
+        var notesJson :[String: Any] = [:]
+        notesJson["notes"] = notes.map {$0.json}
+        do {
+            let notesData = try JSONSerialization.data(withJSONObject: notesJson, options: [])
+            if let cachePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
                 let path = cachePath.appendingPathComponent("notebook")
-                FileManager.default.createFile(atPath: path.path, contents: data, attributes: nil)
-            } catch let error {
-                print("Can't save notes to file: \(error.localizedDescription)")
+                FileManager.default.createFile(atPath: path.path, contents: notesData, attributes: nil)
             }
+        } catch {
+            print("save error: \(error)")
         }
     }
     
     public func load() {
-        if let cachePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            do {
+        do {
+            if let cachePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
                 let path = cachePath.appendingPathComponent("notebook")
-                if let data = FileManager.default.contents(atPath: path.path) {
-                    let json = try JSONSerialization.jsonObject(with: data, options: []) as! [[String: Any]]
-                    _ = json.map { self.notes.append(Note.parse(json: $0)!) }
+                let notesDate = try Data(contentsOf: path)
+                let notesJson = try JSONSerialization.jsonObject(with: notesDate, options: []) as! [String: Any]
+                let notesArr = notesJson["notes"] as! [[String:Any]]
+                for noteJson in notesArr {
+                    let note = Note.parse(json: noteJson)
+                    add(note!)
                 }
-            } catch let error {
-                print("Can't load notes from cache: \(error.localizedDescription)")
             }
+        } catch {
+            print("load error \(error)")
         }
     }
 }

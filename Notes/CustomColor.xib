@@ -43,7 +43,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <gestureRecognizers/>
                     <connections>
-                        <outletCollection property="gestureRecognizers" destination="j6p-W9-BcS" appends="YES" id="jjt-qy-Neh"/>
+                        <outletCollection property="gestureRecognizers" destination="GIl-Gd-7oo" appends="YES" id="CJA-ku-UKI"/>
                     </connections>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IiG-Wb-Ccw">
@@ -77,10 +77,10 @@
             <state key="normal" title="Button"/>
             <point key="canvasLocation" x="-365" y="152"/>
         </button>
-        <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="j6p-W9-BcS">
+        <tapGestureRecognizer id="GIl-Gd-7oo">
             <connections>
-                <action selector="colorSelect:" destination="-1" id="uGC-QZ-mgd"/>
+                <action selector="colorSelect:" destination="-1" id="WGv-p9-z6d"/>
             </connections>
-        </pongPressGestureRecognizer>
+        </tapGestureRecognizer>
     </objects>
 </document>

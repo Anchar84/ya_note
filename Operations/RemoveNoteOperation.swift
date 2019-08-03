@@ -1,10 +1,8 @@
 import Foundation
 
 class RemoveNoteOperation : AsyncOperation {
-    private let note: Note
-    private let notebook: FileNotebook
     private let removeFromDb: RemoveNoteDBOperation
-    private var saveFromBackend: SaveNotesBackendOperation?
+    private let dbQueue: OperationQueue
     
     private(set) var result: Bool? = false
     
@@ -12,31 +10,28 @@ class RemoveNoteOperation : AsyncOperation {
          notebook: FileNotebook,
          backendQueue: OperationQueue,
          dbQueue: OperationQueue) {
-        self.note = note
-        self.notebook = notebook
         
+        self.dbQueue = dbQueue
         removeFromDb = RemoveNoteDBOperation(uid: note.uid, notebook: notebook)
         
         super.init()
         
         removeFromDb.completionBlock = {
             let saveFromBackend = SaveNotesBackendOperation(notes: notebook.notes)
-            self.saveFromBackend = saveFromBackend
-            self.addDependency(saveFromBackend)
+            saveFromBackend.completionBlock = {
+                switch saveFromBackend.result! {
+                case .success:
+                    self.result = true
+                case .failure:
+                    self.result = false
+                }
+                self.finish()
+            }
             backendQueue.addOperation(saveFromBackend)
         }
-        
-        addDependency(removeFromDb)
-        dbQueue.addOperation(removeFromDb)
     }
     
     override func main() {
-        switch saveFromBackend!.result! {
-        case .success:
-            result = true
-        case .failure:
-            result = false
-        }
-        finish()
+        dbQueue.addOperation(removeFromDb)
     }
 }
