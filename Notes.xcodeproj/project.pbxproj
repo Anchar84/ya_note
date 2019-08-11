@@ -12,6 +12,9 @@
 		CE361CE222D8DA230056B268 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE361CE022D8DA230056B268 /* Main.storyboard */; };
 		CE361CE422D8DA250056B268 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE361CE322D8DA250056B268 /* Assets.xcassets */; };
 		CE361CE722D8DA250056B268 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE361CE522D8DA250056B268 /* LaunchScreen.storyboard */; };
+		CE657E2322FF306C00DEA3E0 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE657E2122FF306C00DEA3E0 /* AuthViewController.swift */; };
+		CE657E2422FF306C00DEA3E0 /* AuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE657E2222FF306C00DEA3E0 /* AuthViewController.xib */; };
+		CE657E2722FF415100DEA3E0 /* Gists.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE657E2622FF415100DEA3E0 /* Gists.swift */; };
 		CE7B2E8F22F33DFF002C9C61 /* LoadNotesDBOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B2E8E22F33DFF002C9C61 /* LoadNotesDBOperation.swift */; };
 		CE7B2E9122F33E60002C9C61 /* RemoveNoteDBOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B2E9022F33E60002C9C61 /* RemoveNoteDBOperation.swift */; };
 		CE7B2E9322F33F15002C9C61 /* LoadNotesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B2E9222F33F15002C9C61 /* LoadNotesOperation.swift */; };
@@ -45,6 +48,9 @@
 		CE361CE322D8DA250056B268 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE361CE622D8DA250056B268 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE361CE822D8DA250056B268 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE657E2122FF306C00DEA3E0 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		CE657E2222FF306C00DEA3E0 /* AuthViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthViewController.xib; sourceTree = "<group>"; };
+		CE657E2622FF415100DEA3E0 /* Gists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gists.swift; sourceTree = "<group>"; };
 		CE7B2E8E22F33DFF002C9C61 /* LoadNotesDBOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadNotesDBOperation.swift; sourceTree = "<group>"; };
 		CE7B2E9022F33E60002C9C61 /* RemoveNoteDBOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveNoteDBOperation.swift; sourceTree = "<group>"; };
 		CE7B2E9222F33F15002C9C61 /* LoadNotesOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadNotesOperation.swift; sourceTree = "<group>"; };
@@ -84,6 +90,7 @@
 		CE361CD022D8DA230056B268 = {
 			isa = PBXGroup;
 			children = (
+				CE657E2522FF413F00DEA3E0 /* Gists */,
 				CECF85BF22F2B7BC0004DFAF /* Operations */,
 				CEFD2FE922E4B752002515EC /* Model */,
 				CE361CDB22D8DA230056B268 /* Notes */,
@@ -117,8 +124,18 @@
 				CEFD2FF122E4E467002515EC /* NoteViewCell.xib */,
 				CEFD2FF422E4F285002515EC /* ImageViewController.swift */,
 				CEAAAA4C22F4A5C400A780FB /* Main.swift */,
+				CE657E2122FF306C00DEA3E0 /* AuthViewController.swift */,
+				CE657E2222FF306C00DEA3E0 /* AuthViewController.xib */,
 			);
 			path = Notes;
+			sourceTree = "<group>";
+		};
+		CE657E2522FF413F00DEA3E0 /* Gists */ = {
+			isa = PBXGroup;
+			children = (
+				CE657E2622FF415100DEA3E0 /* Gists.swift */,
+			);
+			path = Gists;
 			sourceTree = "<group>";
 		};
 		CECF85BF22F2B7BC0004DFAF /* Operations */ = {
@@ -227,6 +244,7 @@
 				CE361CE422D8DA250056B268 /* Assets.xcassets in Resources */,
 				CE7DAAA722DB85860076075A /* CustomColor.xib in Resources */,
 				CE361CE222D8DA230056B268 /* Main.storyboard in Resources */,
+				CE657E2422FF306C00DEA3E0 /* AuthViewController.xib in Resources */,
 				CEFD2FF322E4E467002515EC /* NoteViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -242,6 +260,7 @@
 				CE361CDF22D8DA230056B268 /* NoteViewController.swift in Sources */,
 				CE7B2E8F22F33DFF002C9C61 /* LoadNotesDBOperation.swift in Sources */,
 				CECF85C822F2B8BC0004DFAF /* BaseBackendOperation.swift in Sources */,
+				CE657E2322FF306C00DEA3E0 /* AuthViewController.swift in Sources */,
 				CEC620E722DA3E83007E393E /* HSBColorPicker.swift in Sources */,
 				CEFD2FF222E4E467002515EC /* NoteViewCell.swift in Sources */,
 				CEE97AE622E38917006E8DD7 /* NoteListViewController.swift in Sources */,
@@ -260,6 +279,7 @@
 				CEFD2FF522E4F285002515EC /* ImageViewController.swift in Sources */,
 				CECF85C122F2B7EA0004DFAF /* AsyncOperation.swift in Sources */,
 				CECF85C322F2B80E0004DFAF /* SaveNoteOperation.swift in Sources */,
+				CE657E2722FF415100DEA3E0 /* Gists.swift in Sources */,
 				CEFD2FED22E4B76B002515EC /* FileNotebook.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

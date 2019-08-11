@@ -13,6 +13,7 @@ class NoteListViewController: UIViewController {
 
     @IBOutlet weak var notesTable: UITableView!
     var selectedNote: Note?
+    var notesLoades = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +34,8 @@ class NoteListViewController: UIViewController {
         notesTable.isEditing = !notesTable.isEditing
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    fileprivate func loadNotes() {
+        notesTable.refreshControl?.beginRefreshing()
         let loadNotesOperation = LoadNotesOperation(
             notebook: notebook,
             backendQueue: backendQueue,
@@ -41,10 +43,28 @@ class NoteListViewController: UIViewController {
         )
         commonQueue.addOperation(loadNotesOperation)
         // необходимо реализовать индикатор загрузки
-        let updateUI = BlockOperation {
+        loadNotesOperation.completionBlock = {
+            let updateUI = BlockOperation {
+                self.notesTable.refreshControl?.endRefreshing()
+                self.notesTable.reloadData()
+            }
+            OperationQueue.main.addOperation(updateUI)
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        guard !userToken.isEmpty else {
+            requestToken()
+            return
+        }
+        
+        if (!isNotesLoaded) {
+            loadNotes()
+            isNotesLoaded = true
+        } else {
             self.notesTable.reloadData()
         }
-        OperationQueue.main.addOperation(updateUI)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -83,18 +103,31 @@ extension NoteListViewController: UITableViewDataSource, UITableViewDelegate {
                                                       dbQueue: dbQueue)
             commonQueue.addOperation(removeOperation)
             // необходимо реализовать индикатор загрузки
-            let updateUI = BlockOperation {
-                self.notesTable.reloadData()
+            removeOperation.completionBlock = {
+                let updateUI = BlockOperation {
+                    self.notesTable.reloadData()
+                }
+                OperationQueue.main.addOperation(updateUI)
             }
-            OperationQueue.main.addOperation(updateUI)
             
-//            notebook.remove(with: note.uid)
-//            notesTable.reloadData()
         }
     }
     
     func tableView(_ table: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedNote = notebook.notes[indexPath.section]
         performSegue(withIdentifier: "GoToNote", sender: self)
+    }
+}
+
+extension NoteListViewController: AuthViewControllerDelegate {
+    func handleTokenChanged(token: String) {
+        userToken = token
+        loadNotes()
+    }
+    
+    private func requestToken() {
+        let requestTokenViewController = AuthViewController()
+        requestTokenViewController.delegate = self
+        present(requestTokenViewController, animated: false, completion: nil)
     }
 }

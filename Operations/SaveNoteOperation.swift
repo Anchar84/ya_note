@@ -19,6 +19,7 @@ class SaveNoteOperation: AsyncOperation {
         saveToDb.completionBlock = {
             let saveToBackend = SaveNotesBackendOperation(notes: notebook.notes)
             saveToBackend.completionBlock = {
+                print("saveToBackend complite")
                 switch saveToBackend.result! {
                 case .success:
                     self.result = true
@@ -28,8 +29,7 @@ class SaveNoteOperation: AsyncOperation {
                 self.finish()
             }
             backendQueue.addOperation(saveToBackend)
-        }
-    
+        }    
     }
     
     override func main() {

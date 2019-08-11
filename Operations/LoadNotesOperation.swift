@@ -1,42 +1,63 @@
 import Foundation
 
 class LoadNotesOperation: AsyncOperation {
-    private let loadFromDb: LoadNotesDBOperation
-    private var loadFromBackend: LoadNotesBackendOperation?
+    //private let loadFromDb: LoadNotesDBOperation
+    private let loadFromBackend: LoadNotesBackendOperation
     
     private(set) var result: Bool? = false
-    private let dbQueue: OperationQueue;
+    //private let dbQueue: OperationQueue
+    private let backendQueue: OperationQueue
     
     init(notebook: FileNotebook,
          backendQueue: OperationQueue,
          dbQueue: OperationQueue) {
         
-        loadFromDb = LoadNotesDBOperation(notebook: notebook)
-        self.dbQueue = dbQueue
-        
+        self.backendQueue = backendQueue
+        self.loadFromBackend = LoadNotesBackendOperation()
         super.init()
         
-        loadFromDb.completionBlock = {
-            let loadFromBackend = LoadNotesBackendOperation()
-            
-            loadFromBackend.completionBlock = {
-                guard let notes = loadFromBackend.notes else {return}
-                for note in notes {
-                    notebook.add(note) // добавление данных в коллекцию, если заметка с таким uid уже есть она обновиться
-                }
-                switch loadFromBackend.result! {
+        loadFromBackend.completionBlock = {
+            if let result = self.loadFromBackend.result {
+                /*
+                 Файл в gist для хранения массива заметок в виде JSON должен называться "ios-course-notes-db". Если при загрузке файл с именем "ios-course-notes-db" не был найден, нужно показывать локальный список заметок, иначе - пустой список.
+                 */
+                switch result  {
                 case .success:
-                    self.result = true
-                case .failure:
+                    if self.loadFromBackend.notes.count > 0 { // файл найдет в github, отображаем заметки из него
+                        print("fount \(self.loadFromBackend.notes.count) backend notes in \(gistsId)")
+                        for note in self.loadFromBackend.notes {
+                            notebook.add(note)
+                        }
+                        self.result = true
+                        self.finish()
+                    } else { // файл не найдет в github, отображаем локальный список
+                        print("no backend notes found, load local notes list")
+                        let loadFromDb = LoadNotesDBOperation(notebook: notebook)
+                        loadFromDb.completionBlock = {
+                            switch self.loadFromBackend.result! {
+                            case .success:
+                                self.result = true
+                            case .failure:
+                                self.result = false
+                            }
+                            self.finish()
+                        }
+                        self.loadFromBackend.addDependency(loadFromDb)
+                        dbQueue.addOperation(loadFromDb)
+                    }
+                case .failure(_): // иначе отображаем пустой список
+                    print("cannot load notes from github, notes are empty")
                     self.result = false
+                    self.finish()
                 }
-                self.finish()
             }
-            backendQueue.addOperation(loadFromBackend)
         }
+        
+        
+       
     }
     
     override func main() {
-        dbQueue.addOperation(loadFromDb)
+        backendQueue.addOperation(loadFromBackend)
     }
 }
