@@ -92,7 +92,7 @@ func loadNotes(_ onSuccess:@escaping (_ gist: Gist?, _ notesFileDate: Data?) thr
 }
 
 
-var userToken = "804f3b12e2457dde8f8aeda6b429ba5025103e29"
+var userToken = ""
 let notesFileName = "ios-course-notes-db"
 var gistsId = ""
 var isNotesLoaded = false
