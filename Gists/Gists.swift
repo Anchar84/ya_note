@@ -34,62 +34,6 @@ struct GistFileMode: Codable {
 }
 
 
-func loadNotes(_ onSuccess:@escaping (_ gist: Gist?, _ notesFileDate: Data?) throws -> Void, _ onError: @escaping () -> Void) {
-    guard let url = URL(string: "https://api.github.com/gists") else {
-        print("cannot create url")
-        return
-    }
-    var request = URLRequest(url: url)
-    request.addValue("token \(userToken)", forHTTPHeaderField: "Authorization")
-    URLSession.shared.dataTask(with: request) {(date, response, error) in
-        var isHttpOk = false
-        if let response = response as? HTTPURLResponse {
-            switch response.statusCode {
-            case 200..<300:
-                isHttpOk = true
-            default:
-                onError()
-                return
-            }
-        }
-        print("loadNotes isHttpOk: \(isHttpOk)")
-        guard let date = date else {
-            onError()
-            return
-        }
-        do {
-            let gists = try JSONDecoder().decode([Gist].self, from: date)
-            let gist = gists.first(where: {gist in gist.files[notesFileName] != nil})
-            guard let notesGits = gist, gist?.files[notesFileName]?.raw_url != nil  else {
-                try onSuccess(nil, nil)
-                return
-            }
-            let fileUrl = notesGits.files[notesFileName]!.raw_url
-            URLSession.shared.dataTask(with: URL(string: fileUrl)!) {(date, response, error) in
-                if let response = response as? HTTPURLResponse {
-                    switch response.statusCode {
-                    case 200..<300:
-                        isHttpOk = true
-                    default:
-                        onError()
-                        return
-                    }
-                }
-                do {
-                    gistsId = gist?.id ?? ""
-                    try onSuccess(gist, date)
-                } catch {
-                    print("parse error: \(error)")
-                    onError()
-                }
-            }.resume()
-        } catch {
-            print("parse error: \(error)")
-            onError()
-        }
-        
-        }.resume()
-}
 
 
 var userToken = ""

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class NoteViewController: UIViewController {
 
@@ -22,6 +23,8 @@ class NoteViewController: UIViewController {
     @IBOutlet weak var customColor: ColorSelect!
     
     private var gradientLayer: CAGradientLayer?
+    var backgroundContext: NSManagedObjectContext?
+
     var editingNote: Note?
     
     override func viewDidLoad() {
@@ -138,7 +141,8 @@ class NoteViewController: UIViewController {
             note: Note(uid: uid, title: title, content: text, color: color, importance: .IMPORTANT, selfDestructionDate: date),
             notebook: notebook,
             backendQueue: backendQueue,
-            dbQueue: dbQueue
+            dbQueue: dbQueue,
+            backgroundContext: backgroundContext!
         )
         commonQueue.addOperation(saveNoteOperation)
         

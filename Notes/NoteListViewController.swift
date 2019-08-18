@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 
 class NoteListViewController: UIViewController {
@@ -14,6 +15,17 @@ class NoteListViewController: UIViewController {
     @IBOutlet weak var notesTable: UITableView!
     var selectedNote: Note?
     var notesLoades = false
+    
+    var backgroundContext: NSManagedObjectContext? {
+        didSet {
+            if !isNotesLoaded && !userToken.isEmpty {
+                loadNotes()
+                isNotesLoaded = true
+            }
+        }
+    }
+
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +51,8 @@ class NoteListViewController: UIViewController {
         let loadNotesOperation = LoadNotesOperation(
             notebook: notebook,
             backendQueue: backendQueue,
-            dbQueue: dbQueue
+            dbQueue: dbQueue,
+            backgroundContext: backgroundContext!
         )
         commonQueue.addOperation(loadNotesOperation)
         // необходимо реализовать индикатор загрузки
@@ -59,17 +72,18 @@ class NoteListViewController: UIViewController {
             return
         }
         
-        if (!isNotesLoaded) {
+        if (isNotesLoaded) {
+            self.notesTable.reloadData()
+        } else if !isNotesLoaded && backgroundContext != nil {
             loadNotes()
             isNotesLoaded = true
-        } else {
-            self.notesTable.reloadData()
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let controller = segue.destination as? NoteViewController {
             controller.editingNote = selectedNote
+            controller.backgroundContext = backgroundContext
         }
     }
     
@@ -100,7 +114,8 @@ extension NoteListViewController: UITableViewDataSource, UITableViewDelegate {
             let removeOperation = RemoveNoteOperation(note: notebook.getNotes[indexPath.section],
                                                       notebook: notebook,
                                                       backendQueue: backendQueue,
-                                                      dbQueue: dbQueue)
+                                                      dbQueue: dbQueue,
+                                                      backgroundContext: backgroundContext!)
             commonQueue.addOperation(removeOperation)
             // необходимо реализовать индикатор загрузки
             removeOperation.completionBlock = {

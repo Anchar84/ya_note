@@ -32,6 +32,8 @@
 		CECF85CD22F2B9100004DFAF /* BaseDBOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECF85CC22F2B9100004DFAF /* BaseDBOperation.swift */; };
 		CECF85CF22F2BA8F0004DFAF /* LoadNotesBackendOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECF85CE22F2BA8F0004DFAF /* LoadNotesBackendOperation.swift */; };
 		CEE97AE622E38917006E8DD7 /* NoteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE97AE522E38917006E8DD7 /* NoteListViewController.swift */; };
+		CEEB7B2023086D5300346FD0 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CEEB7B1E23086D5300346FD0 /* Model.xcdatamodeld */; };
+		CEEB7B2823086ECA00346FD0 /* DbNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEB7B2723086ECA00346FD0 /* DbNote.swift */; };
 		CEFD2FED22E4B76B002515EC /* FileNotebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFD2FEA22E4B76B002515EC /* FileNotebook.swift */; };
 		CEFD2FEE22E4B76B002515EC /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFD2FEB22E4B76B002515EC /* Note.swift */; };
 		CEFD2FEF22E4B76B002515EC /* NoteExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFD2FEC22E4B76B002515EC /* NoteExtension.swift */; };
@@ -68,6 +70,9 @@
 		CECF85CC22F2B9100004DFAF /* BaseDBOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDBOperation.swift; sourceTree = "<group>"; };
 		CECF85CE22F2BA8F0004DFAF /* LoadNotesBackendOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadNotesBackendOperation.swift; sourceTree = "<group>"; };
 		CEE97AE522E38917006E8DD7 /* NoteListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListViewController.swift; sourceTree = "<group>"; };
+		CEEB7B1F23086D5300346FD0 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		CEEB7B2123086E0000346FD0 /* Model 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 2.xcdatamodel"; sourceTree = "<group>"; };
+		CEEB7B2723086ECA00346FD0 /* DbNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbNote.swift; sourceTree = "<group>"; };
 		CEFD2FEA22E4B76B002515EC /* FileNotebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileNotebook.swift; sourceTree = "<group>"; };
 		CEFD2FEB22E4B76B002515EC /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		CEFD2FEC22E4B76B002515EC /* NoteExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteExtension.swift; sourceTree = "<group>"; };
@@ -90,6 +95,8 @@
 		CE361CD022D8DA230056B268 = {
 			isa = PBXGroup;
 			children = (
+				CEEB7B2623086EB700346FD0 /* storage */,
+				CEEB7B1E23086D5300346FD0 /* Model.xcdatamodeld */,
 				CE657E2522FF413F00DEA3E0 /* Gists */,
 				CECF85BF22F2B7BC0004DFAF /* Operations */,
 				CEFD2FE922E4B752002515EC /* Model */,
@@ -170,6 +177,14 @@
 				CE7B2E9022F33E60002C9C61 /* RemoveNoteDBOperation.swift */,
 			);
 			path = DBOperations;
+			sourceTree = "<group>";
+		};
+		CEEB7B2623086EB700346FD0 /* storage */ = {
+			isa = PBXGroup;
+			children = (
+				CEEB7B2723086ECA00346FD0 /* DbNote.swift */,
+			);
+			path = storage;
 			sourceTree = "<group>";
 		};
 		CEFD2FE922E4B752002515EC /* Model */ = {
@@ -261,12 +276,14 @@
 				CE7B2E8F22F33DFF002C9C61 /* LoadNotesDBOperation.swift in Sources */,
 				CECF85C822F2B8BC0004DFAF /* BaseBackendOperation.swift in Sources */,
 				CE657E2322FF306C00DEA3E0 /* AuthViewController.swift in Sources */,
+				CEEB7B2823086ECA00346FD0 /* DbNote.swift in Sources */,
 				CEC620E722DA3E83007E393E /* HSBColorPicker.swift in Sources */,
 				CEFD2FF222E4E467002515EC /* NoteViewCell.swift in Sources */,
 				CEE97AE622E38917006E8DD7 /* NoteListViewController.swift in Sources */,
 				CE7B2E9522F34053002C9C61 /* RemoveNoteOperation.swift in Sources */,
 				CEFD2FEE22E4B76B002515EC /* Note.swift in Sources */,
 				CE361CDD22D8DA230056B268 /* AppDelegate.swift in Sources */,
+				CEEB7B2023086D5300346FD0 /* Model.xcdatamodeld in Sources */,
 				CEAAAA4D22F4A5C400A780FB /* Main.swift in Sources */,
 				CE7B2E9122F33E60002C9C61 /* RemoveNoteDBOperation.swift in Sources */,
 				CE7B2E9322F33F15002C9C61 /* LoadNotesOperation.swift in Sources */,
@@ -478,6 +495,21 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CEEB7B1E23086D5300346FD0 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CEEB7B2123086E0000346FD0 /* Model 2.xcdatamodel */,
+				CEEB7B1F23086D5300346FD0 /* Model.xcdatamodel */,
+			);
+			currentVersion = CEEB7B2123086E0000346FD0 /* Model 2.xcdatamodel */;
+			name = Model.xcdatamodeld;
+			path = db/Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CE361CD122D8DA230056B268 /* Project object */;
 }

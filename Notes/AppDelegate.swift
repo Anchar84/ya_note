@@ -7,15 +7,40 @@
 //
 
 import UIKit
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var container: NSPersistentContainer!
+    
+    func createContainer(completion: @escaping (NSPersistentContainer) -> ()) {
+        let container = NSPersistentContainer(name: "Model")
+        container.loadPersistentStores(completionHandler: {_, error in
+            guard error == nil else {fatalError("Failed to load store")}
+            DispatchQueue.main.async {
+                completion(container)
+            }
+        })
+    }
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        createContainer {container in
+            self.container = container
+            if let tc = self.window?.rootViewController as? UITabBarController {
+                if let nc = tc.viewControllers?[0] as? UINavigationController {
+                    if let nlv = nc.topViewController as? NoteListViewController {
+                        print("init context")
+                        //nlv.context = container.viewContext
+                        nlv.backgroundContext = container.newBackgroundContext()
+                    }
+                }
+            }
+        }
+        
         return true
     }
 

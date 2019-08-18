@@ -1,4 +1,5 @@
 import Foundation
+import CoreData
 
 class RemoveNoteOperation : AsyncOperation {
     private let removeFromDb: RemoveNoteDBOperation
@@ -9,10 +10,11 @@ class RemoveNoteOperation : AsyncOperation {
     init(note: Note,
          notebook: FileNotebook,
          backendQueue: OperationQueue,
-         dbQueue: OperationQueue) {
+         dbQueue: OperationQueue,
+         backgroundContext: NSManagedObjectContext) {
         
         self.dbQueue = dbQueue
-        removeFromDb = RemoveNoteDBOperation(uid: note.uid, notebook: notebook)
+        removeFromDb = RemoveNoteDBOperation(note: note, notebook: notebook, backgroundContext: backgroundContext)
         
         super.init()
         

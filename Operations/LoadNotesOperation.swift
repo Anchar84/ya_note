@@ -1,4 +1,5 @@
 import Foundation
+import CoreData
 
 class LoadNotesOperation: AsyncOperation {
     //private let loadFromDb: LoadNotesDBOperation
@@ -10,7 +11,8 @@ class LoadNotesOperation: AsyncOperation {
     
     init(notebook: FileNotebook,
          backendQueue: OperationQueue,
-         dbQueue: OperationQueue) {
+         dbQueue: OperationQueue,
+         backgroundContext: NSManagedObjectContext) {
         
         self.backendQueue = backendQueue
         self.loadFromBackend = LoadNotesBackendOperation()
@@ -28,11 +30,11 @@ class LoadNotesOperation: AsyncOperation {
                         for note in self.loadFromBackend.notes {
                             notebook.add(note)
                         }
-                        self.result = true
-                        self.finish()
+                        /*self.result = true
+                        self.finish()*/
                     } else { // файл не найдет в github, отображаем локальный список
                         print("no backend notes found, load local notes list")
-                        let loadFromDb = LoadNotesDBOperation(notebook: notebook)
+                        let loadFromDb = LoadNotesDBOperation(notebook: notebook, backgroundContext: backgroundContext)
                         loadFromDb.completionBlock = {
                             switch self.loadFromBackend.result! {
                             case .success:
